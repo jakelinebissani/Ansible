@@ -1,0 +1,9 @@
+---
+- hosts: producao
+
+
+tasks:
+  - name: adicionar o usuario padrão
+    user: 
+
+    ...
