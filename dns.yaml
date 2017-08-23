@@ -1,0 +1,51 @@
+- hosts: testing
+  remote_user: root
+
+  tasks:
+    - name: Instalar servidor DNS 
+      apt: 
+        name: bind9
+        state: installed
+        update_cache: true
+      register: bind9_installed
+      notify:
+        - Start Bind9
+
+    - name: Arquivos de Configuracao
+      copy:
+        src: "{{ item }}"
+        dest: /etc/bind/
+        owner: root
+        group: root
+        mode: 0644
+      with_items:
+        - /root/named.conf.local
+        - /root/named.conf.options
+      when: bind9_installed|success
+      notify:
+        - Restart Bind9
+
+    - name: Base de Dados de Registro
+      copy:
+        src: "{{ item }}"
+        dest: /var/cache/bind/
+        owner: root
+        group: root
+        mode: 0644
+      with_items:
+        - /root/db.dexter.interna
+        - /root/rev.dexter.interna
+      notify:
+        - Restart Bind9
+
+  handlers:
+    - name: Start Bind9
+      service: 
+        name: bind9
+        state: started
+        
+    - name: Restart Bind9
+      service:
+        name: bind9
+        state: restarted
+

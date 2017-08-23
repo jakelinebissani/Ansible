@@ -1,0 +1,13 @@
+---
+
+- hosts: testeing
+  vars: 
+    - usuario: linus
+  
+  tasks:
+    - name: Adicionar usuario atraves de variavel
+      user:
+        name: "{{ usuario }}"
+        state: present
+        shell: /bin/bash
+        password: $1$.ao.HAn3$WRdcU.csLxiXZzSnmDhmY/ 

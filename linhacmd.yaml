@@ -1,0 +1,12 @@
+---
+- hosts: testing
+
+  tasks:
+    - name: Estrutura de Diretorios
+      file:
+        dest: "{{ diretorios }}"
+        state: directory
+        recurse: yes
+        owner: root
+        group: root
+        mode: 0775

@@ -1,0 +1,5 @@
+# Gerenciado pelo Ansible - Template /etc/hosts
+
+192.168.200.30 ansible-test.dexter.com.br
+192.168.200.10 cm.dexter.com.br
+127.0.0.1 localhost

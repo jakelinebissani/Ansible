@@ -1,0 +1,34 @@
+---
+- hosts: testing
+
+  tasks:
+    - name: Instala pacote NTP
+      apt:
+        name: ntp
+        state: installed
+        update_cache: true
+      register: ntp_installed
+      notify:
+        - Start NTP
+
+    - name: Define o arquivo de conf
+      copy:
+        src: /root/ntp.conf
+        dest: /etc/ntp.conf
+        owner: root
+        group: root
+        mode: 0644
+      when: ntp_installed|success
+      notify:
+        - Restart NTP
+
+  handlers:
+    - name: Start NTP
+      service:
+        name: ntp
+        state: started
+        
+    - name: Restart NTP
+      service: 
+        name: ntp
+        state: restarted

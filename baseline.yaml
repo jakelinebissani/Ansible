@@ -1,9 +1,45 @@
 ---
-- hosts: producao
+- hosts: testing
 
+  tasks:
+  - name: Adicionar o usuario Joao
+    user: name=joao state=present shell=/bin/bash password=$1$.ao.HAn3$WRdcU.csLxiXZzSnmDhmY/
 
-tasks:
-  - name: adicionar o usuario padrão
-    user: 
+  - name: Adicionar o usuario Maria
+    user:
+      name: maria
+      state: present
+      shell: /bin/bash
+      password: $1$.ao.HAn3$WRdcU.csLxiXZzSnmDhmY/
 
-    ...
+  - name: Instalar os pacotes base
+    apt:
+      name: "{{ item }}"
+      state: installed
+      update_cache: true
+    with_items:
+      - tzdata
+      - dnsutils
+      - bash-completion
+      - unzip
+      - bzip2
+      - htop
+      - vim
+      - mlocate
+  
+  - name: Garantir template /etc/hosts
+    copy:
+      src: /media/sf_Ansible/hosts
+      dest: /etc/hosts
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: Garantir template /etc/resolv.conf
+    copy:
+      src: /media/sf_Ansible/resolv.conf
+      dest: /etc/resolv.conf
+      owner: root
+      group: root
+      mode: 0644
+...
