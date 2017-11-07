@@ -1,0 +1,4 @@
+---
+- hosts: node01
+  roles:
+  - dns

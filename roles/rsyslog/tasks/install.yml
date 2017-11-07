@@ -1,0 +1,7 @@
+---
+  - name: Instala servidor de Logs da empresa Dexter Courier
+    yum: pkg=rsyslog state=installed update_cache=true
+    register: rsyslog_installed
+    notify:
+    - Start Rsyslog
+...

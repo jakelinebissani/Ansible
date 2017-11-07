@@ -1,0 +1,28 @@
+---
+- name: Arquivos de Configuracao
+  copy:
+    src: "{{ item }}"
+    dest: /etc/bind/
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+     - named.conf.local
+     - named.conf.options
+  when: bind9_installed|success
+  notify:
+    - Restart Bind9
+
+# - name: Base de Dados de Registro
+#   copy:
+#     src: "{{ item }}"
+#     dest: /var/cache/bind/
+#     owner: root
+#     group: root
+#     mode: 0644
+#   with_items:
+#     - /root/db.dexter.interna
+#     - /root/rev.dexter.interna
+#   notify:
+#     - Restart Bind9
+...

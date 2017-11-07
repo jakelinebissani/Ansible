@@ -1,0 +1,7 @@
+---
+- name: Define o arquivo de configuração do servidor de Logs
+  when: rsyslog_installed|success
+  copy: src=rsyslog.conf dest=/etc/rsyslog.conf owner=root group=root mode=0644
+  notify:
+    - Reload Rsyslog
+...
