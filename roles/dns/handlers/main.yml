@@ -1,10 +1,10 @@
 ---
-    - name: Start Bind9
+    - name: Start Bind
       service: 
-        name: bind9
+        name: bind
         state: started
         
-    - name: Restart Bind9
+    - name: Restart Bind
       service:
-        name: bind9
+        name: bind
         state: restarted

@@ -9,9 +9,9 @@
   with_items:
      - named.conf.local
      - named.conf.options
-  when: bind9_installed|success
+  when: bind_installed|success
   notify:
-    - Restart Bind9
+    - Restart Bind
 
 # - name: Base de Dados de Registro
 #   copy:
@@ -24,5 +24,5 @@
 #     - /root/db.dexter.interna
 #     - /root/rev.dexter.interna
 #   notify:
-#     - Restart Bind9
+#     - Restart Bind
 ...

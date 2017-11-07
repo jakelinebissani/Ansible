@@ -1,9 +1,9 @@
 ---
 - name: Instalar servidor DNS 
   yum: 
-    name: bind9
+    name: bind
     state: installed
     update_cache: true
-    register: bind9_installed
+    register: bind_installed
     notify:
-      - Start Bind9
+      - Start Bind
