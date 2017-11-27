@@ -1,9 +1,6 @@
 ---
-- name: Instalar servidor DNS 
-  yum: 
-    name: bind
-    state: installed
-    update_cache: true
-    register: bind_installed
-    notify:
-      - Start Bind
+- name: Instala servidor DNS da empresa Dexter Courier
+  yum: pkg=bind state=installed update_cache=true
+  register: bind_installed
+  notify:
+  - Start Bind

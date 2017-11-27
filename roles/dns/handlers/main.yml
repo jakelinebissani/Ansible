@@ -1,10 +1,5 @@
 ---
-    - name: Start Bind
-      service: 
-        name: bind
-        state: started
-        
-    - name: Restart Bind
-      service:
-        name: bind
-        state: restarted
+- name: Start Bind
+  service: name=bind state=started
+- name: Reload Bind
+  service: name=bind state=reloaded
