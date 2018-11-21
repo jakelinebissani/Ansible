@@ -2,3 +2,5 @@
 AulaAl/\.vagrant/
 
 AulaAl/ssh-keys/
+
+*.retry
